@@ -1,5 +1,6 @@
 const mongoose =require("mongoose")
-
+// Role Based Security --> Authorization
+// Authentication -> 
 const User= mongoose.model(
     "User", new mongoose.Schema({
         username:String,
@@ -15,4 +16,5 @@ const User= mongoose.model(
 );
 module.exports=User;
 
+// not kn own
 // Dheeraj, dheeraj@careerera.com,123456. [Admn, Learner , Instructor]

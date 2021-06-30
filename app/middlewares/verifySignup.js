@@ -36,7 +36,28 @@ checkDuplicateUsernameOrEmail= (req, resp, next)=>{
     });
 };
 
+checkRoleEixisted =(req, resp, next)=>{
+    if(req.body.roles){
+        for (let index = 0; index < req.body.roles.length; index++) {
+            if(!ROLES.includes(req.body.roles[index])){
+                    resp.status(400).send({
+                        message:` Role called ${req.body.roles[index]} does not exist` 
+                    });
+                    return;
+            }
+        }
+    }
+    next();
+}
 
+
+const verifySignUp={
+    checkRoleEixisted,
+    checkDuplicateUsernameOrEmail
+}
+
+
+module.exports=verifySignUp
 // role existence 
 
 // controller--> route
