@@ -8,12 +8,59 @@ const Role= db.Role;
 const jwt =require("jsonwebtoken")
 const brcypt=require("bcryptjs")
 
+
+ 
+
 exports.signup= (req,res)=>{
-    // ROles 
-    // User Attach
-    // Save
+
+    console.warn(`REQUEST ${req.body.password} | ${req.body.email} |${req.body.username} `)
+    const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: brcypt.hashSync(req.body.password)
+    });
+
+    user.save((error, user)=>{
+        if(error){
+            res.status(500).send({message:"Error "+ error})
+            return;
+        }
+
+        if(req.body.roles){
+            Role.find({
+                name:{$in:req.body.roles}
+            },
+            (err,roles)=>{
+                if(err){
+                    res.status(500).send({message:"Error "+ err})
+                    return ;
+                }
+                user.roles= roles.map(role=>role._id);
+
+                user.save((error,user)=>{
+                    if(error){
+                        res.status(500).send({message:"Error "+ error})
+                        return ;
+                    }
+                    res.send({message:"User created successfully",roles:user.roles})
+                });
+            });
+        }
+        else{
+            Role.findOne({name:"learner"},(error,roles)=>{
+                if(error){
+                    res.status(500).send({message:"Error "+ error})
+                    return; 
+                }
+                res.send({message:"User was registered successfully with ",roles:roles})
+            })
+        }
+    });
 }
 
+    // ROles | Request -> {name: first last email hash(password) roles[]}
+    // User Attach
+    // Save
 // Relational Database | Document Database
 // NOrmalization
 // Denormailzation

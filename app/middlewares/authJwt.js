@@ -5,6 +5,8 @@ const db = require("../models")
 
 
 // We will Bootstrap this ROle 
+
+
 const User = db.User
 const Role= db.Role
 
