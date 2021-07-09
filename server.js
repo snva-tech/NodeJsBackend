@@ -16,7 +16,7 @@ require('./app/routes/user.routes')(app);
 // origin:"http://localhost"
 
 var corsOption={
-    origin:"http://localhost:8081"
+    origin:"http://localhost:3000"
 }
 
 app.use(cors(corsOption))

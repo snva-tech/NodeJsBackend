@@ -10,7 +10,7 @@ module.exports= function (app){
        )
        next();
     });
-
+    // public access point
     app.get("/api/test/all",
     controller.allAccess
     );

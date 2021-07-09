@@ -10,6 +10,9 @@ exports.learnerBoard= (req,res)=>{
 
 exports.adminBoard= (req,res)=>{
     res.status(200).send("Admin Content")
+    /// No of useres created today 
+    // new user list 
+    // Roles Active |
 }
 
 exports.instructorBoard= (req,res)=>{

@@ -8,11 +8,7 @@ const Role= db.Role;
 const jwt =require("jsonwebtoken")
 const brcypt=require("bcryptjs")
 
-
- 
-
 exports.signup= (req,res)=>{
-
     console.warn(`REQUEST ${req.body.password} | ${req.body.email} |${req.body.username} `)
     const user = new User({
         username: req.body.username,
